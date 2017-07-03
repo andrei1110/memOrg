@@ -47,13 +47,19 @@ include("start.php");
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>Bloco</th>
-					<th>Info</th>
+					<th>cell 0</th>
+					<th>cell 1</th>
+					<th>cell 10</th>
+					<th>cell 11</th>
 				</tr>
 				<?php
 						for ($i = 0; $i < MAXMEM; $i++) {
 							echo '<tr>';
 								echo '<th>'.decbin($i).'</th>';
-								echo '<td>'.'exemplo de info para '.$i.'</td>';
+								echo '<td>'.decbin(rand(0,255)).'</td>';
+								echo '<td>'.decbin(rand(0,255)).'</td>';
+								echo '<td>'.decbin(rand(0,255)).'</td>';
+								echo '<td>'.decbin(rand(0,255)).'</td>';
 							echo '</tr>';
 						}
 				?>

@@ -29,7 +29,7 @@ function startDB(){//INICIALIZAR O BANCO
 	$sql = mysql_query($query) or print(mysql_error());
 	
 	//população da tabela
-	for($i = 0, $i < MAXMEM; i++){
+	for($i = 0; $i < MAXMEM; $i++){
 		$sql = "INSERT INTO mem(block) VALUES ('".$i."')";
 		mysql_query($sql) or print(mysql_error());
 		for($j = 0; $j < MAXCELL; $j++){
