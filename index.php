@@ -30,8 +30,8 @@ include("start.php");
 				<?php
 						for ($i = 1; $i < MAXCACHE; $i++) {
 							echo '<tr>';
-								echo '<th>'.decbin($i).'</th>';
-								echo '<th>'.'exemplo de info para '.$i.'</th>';
+								echo '<td>'.decbin($i).'</td>';
+								echo '<td>'.$cache[$i]['info'].'</td>';
 							echo '</tr>';
 						}
 				?>
@@ -48,8 +48,8 @@ include("start.php");
 				<?php
 						for ($i = 1; $i < MAXMEM; $i++) {
 							echo '<tr>';
-								echo '<th>'.decbin($i).'</th>';
-								echo '<th>'.'exemplo de info para '.$i.'</th>';
+								echo '<td>'.decbin($i).'</td>';
+								echo '<td>'.'exemplo de info para '.$i.'</td>';
 							echo '</tr>';
 						}
 				?>
