@@ -13,6 +13,7 @@ include("functions.php");
 //INICIALIZAÇÃO DA CACHE
 for($contcache = 0; $contcache <= MAXCACHE; $contcache++){
 	$cache[$contcache]['info'] = 'NULL';
+	$cache[$contcache]['preinfo'] = 'NULL';
 }
 
 

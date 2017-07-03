@@ -22,15 +22,17 @@ include("start.php");
 	<div class="row">
 		<div class="col-md-6">
 			<h3>Cache</h3>
-			<table class="table">
+			<table class="table table-bordered table-hover">
 				<tr>
 					<th>Quadro</th>
+					<th>Info Anterior</th>
 					<th>Info</th>
 				</tr>
 				<?php
 						for ($i = 1; $i < MAXCACHE; $i++) {
 							echo '<tr>';
-								echo '<td>'.decbin($i).'</td>';
+								echo '<th>'.decbin($i).'</th>';
+								echo '<td>'.$cache[$i]['preinfo'].'</td>';
 								echo '<td>'.$cache[$i]['info'].'</td>';
 							echo '</tr>';
 						}
@@ -40,15 +42,15 @@ include("start.php");
 
 		<div class="col-md-6">
 			<h3>Memória principal</h3>
-			<table class="table">
+			<table class="table table-bordered table-hover">
 				<tr>
-					<th>Quadro</th>
+					<th>Bloco</th>
 					<th>Info</th>
 				</tr>
 				<?php
 						for ($i = 1; $i < MAXMEM; $i++) {
 							echo '<tr>';
-								echo '<td>'.decbin($i).'</td>';
+								echo '<th>'.decbin($i).'</th>';
 								echo '<td>'.'exemplo de info para '.$i.'</td>';
 							echo '</tr>';
 						}
