@@ -17,45 +17,48 @@ include("start.php");
 </head>
 <body>
 
+<div class="container">
 
-<div class="row">
-	<div class="col-md-6">
-		<h3>Cache</h3>
-		<table>
-			<tr>
-				<th>Quadro</th>
-				<th>Info</th>
-			</tr>
-			<?php
-					for ($i = 1; $i < MAXCACHE; $i++) {
-						echo '<tr>';
-							echo '<th>'.decbin($i).'</th>';
-							echo '<th>'.'exemplo de info para '.$i.'</th>';
-						echo '</tr>';
-					}
-			?>
-		</table>
-	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<h3>Cache</h3>
+			<table class="table">
+				<tr>
+					<th>Quadro</th>
+					<th>Info</th>
+				</tr>
+				<?php
+						for ($i = 1; $i < MAXCACHE; $i++) {
+							echo '<tr>';
+								echo '<th>'.decbin($i).'</th>';
+								echo '<th>'.'exemplo de info para '.$i.'</th>';
+							echo '</tr>';
+						}
+				?>
+			</table>
+		</div> <!-- FIM GRID 6 -->
 
-	<div class="col-md-6">
-		<h3>Cache</h3>
-		<table>
-			<tr>
-				<th>Quadro</th>
-				<th>Info</th>
-			</tr>
-			<?php
-					for ($i = 1; $i < MAXMEM; $i++) {
-						echo '<tr>';
-							echo '<th>'.decbin($i).'</th>';
-							echo '<th>'.'exemplo de info para '.$i.'</th>';
-						echo '</tr>';
-					}
-			?>
-		</table>
-	</div>
-</div>
-
+		<div class="col-md-6">
+			<h3>Memória principal</h3>
+			<table class="table">
+				<tr>
+					<th>Quadro</th>
+					<th>Info</th>
+				</tr>
+				<?php
+						for ($i = 1; $i < MAXMEM; $i++) {
+							echo '<tr>';
+								echo '<th>'.decbin($i).'</th>';
+								echo '<th>'.'exemplo de info para '.$i.'</th>';
+							echo '</tr>';
+						}
+				?>
+			</table>
+		</div> <!-- FIM GRID 6 -->
+		
+	</div> <!-- FIM ROW -->
+	
+</div> <!-- FIM CONTAINER -->
 
 </body>
 </html>
