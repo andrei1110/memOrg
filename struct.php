@@ -7,7 +7,7 @@
 */
 
 define("MAXMEM", 256); //TAMANHO MÁXIMO DA MEMÓRIA PRINCIPAL (blocos)
-define("MAXCACHE", 256); //TAMANHO MÁXIMO DA CACHE (quadros)
+define("MAXCACHE", 16); //TAMANHO MÁXIMO DA CACHE (quadros)
 define("MAXWORD", 4); //TAMANHO DA PALAVRA (bytes)
 
 /*

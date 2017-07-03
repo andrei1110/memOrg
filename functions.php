@@ -4,7 +4,7 @@
 	Organização de computadores
 	Andrei Toledo, Jardel Anton e Marcelo Acordi
 */
-require_once("struct.php");
+include("struct.php");
 
 function connect(){ //FUNÇÃO PARA CONEXÃO NO BANCO DE DADOS
 	$conn = mysql_connect(HOST, USER, PASSWORD) or print(msql_error());

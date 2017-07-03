@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 	Trabalho sobre memória
 	Organização de computadores
@@ -8,6 +8,6 @@
 	Página que irá iniciar todo o sistema
 */
 
-require_once("functions.php");
+include("functions.php");
 
 ?>
