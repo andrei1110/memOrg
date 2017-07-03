@@ -25,13 +25,15 @@ include("start.php");
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>Quadro</th>
+					<th>Estado</th>
 					<th>Info Anterior</th>
 					<th>Info</th>
 				</tr>
 				<?php
-						for ($i = 1; $i < MAXCACHE; $i++) {
+						for ($i = 0; $i < MAXCACHE; $i++) {
 							echo '<tr>';
 								echo '<th>'.decbin($i).'</th>';
+								echo '<td>'.$cache[$i]['status'].'</td>';
 								echo '<td>'.$cache[$i]['preinfo'].'</td>';
 								echo '<td>'.$cache[$i]['info'].'</td>';
 							echo '</tr>';
@@ -48,7 +50,7 @@ include("start.php");
 					<th>Info</th>
 				</tr>
 				<?php
-						for ($i = 1; $i < MAXMEM; $i++) {
+						for ($i = 0; $i < MAXMEM; $i++) {
 							echo '<tr>';
 								echo '<th>'.decbin($i).'</th>';
 								echo '<td>'.'exemplo de info para '.$i.'</td>';

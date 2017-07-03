@@ -14,6 +14,7 @@ include("functions.php");
 for($contcache = 0; $contcache <= MAXCACHE; $contcache++){
 	$cache[$contcache]['info'] = 'NULL';
 	$cache[$contcache]['preinfo'] = 'NULL';
+	$cache[$contcache]['status'] = 'NULL';
 }
 
 
