@@ -13,14 +13,14 @@ define("MAXCELL", 4); //NÚMERO DE CÉLULAS POR BLOCO DA MEMÓRIA
 
 /*
 	Para a simulação da cache, usaremos a memória principal do usuário (o que esta sendo exibido na tela)
-	Para a memória principal, usaremos um banco de dados para simular, esse banco de dados será limpo toda vez que o navegador for atualizado ou reiniciado.
+	Para a memória principal, usaremos um banco de dados para simular. Teremos uma função que gera automaticamente dados para a memória principal.
 */
 
 //DADOS DO BANCO DE DADOS
-define("HOST", "localhost");
-define("USER", "root");
-define("PASSWORD", "");
-define("DB", "mem");
+define("HOST", "localhost"); // <-- ALTERE O NOME DO HOST DO SEU BANCO DE DADOS
+define("USER", "root"); // <-- ALTERE O NOME DE USUÁRIO DO SEU BANCO DE DADOS
+define("PASSWORD", ""); // <-- ALTERE A SENHA DO SEU BANCO DE DADOS
+define("DB", "mem"); // <-- ALTERE O NOME DO BANCO DE DADOS
 
 
 

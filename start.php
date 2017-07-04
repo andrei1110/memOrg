@@ -17,6 +17,7 @@ for($countcache = 0; $countcache <= MAXCACHE; $countcache++){
 	$cache[$countcache]['status'] = 'NULL';
 }
 
+//INICIALIZAÇÃO DA MEMÓRIA PRINCIPAL
 startDB();
 
 ?>

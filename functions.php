@@ -16,25 +16,25 @@ function startDB(){//INICIALIZAR O BANCO
 	connect();
 	
 	//criação dos blocos (256 blocos)
-	$query = "CREATE OR REPLACE TABLE mem(
-				block INT, PRIMARY KEY)";
+	$query = "CREATE TABLE IF NOT EXISTS mp(
+				block INT PRIMARY KEY)";
 	$sql = mysql_query($query) or print(mysql_error());
 	
 	//criação das células, cada célula com 1 byte (4 células por bloco)
 	$query = "CREATE OR REPLACE TABLE block(
-				cell INT, PRIMARY KEY),
+				cel INT,
 				info INT,
 				block INT NOT NULL, 
-				FOREIGN KEY (block) REFERENCES mem(block)";
+				FOREIGN KEY (block) REFERENCES mp(block))";
 	$sql = mysql_query($query) or print(mysql_error());
 	
 	//população da tabela de memória
 	for($i = 0; $i < MAXMEM; $i++){
-		$sql = "INSERT INTO mem(block) VALUES ('".decbin($i)."')";
+		$sql = "INSERT INTO mp(block) VALUES ('".$i."')";
 		mysql_query($sql) or print(mysql_error());
 		for($j = 0; $j < MAXCELL; $j++){
-			$info = decbin(rand(0,255));
-			$sql = "INSERT INTO block(cell, info, block) VALUES('".decbin($j)."', '".$info."','".decbin($i)."')";
+			$info = rand(0,255);
+			$sql = "INSERT INTO block(cel, info, block) VALUES('".$j."', '".$info."','".$i."')";
 			mysql_query($sql) or print(mysql_error());
 		}
 	}
