@@ -31,7 +31,7 @@ include("start.php");
 				</tr>
 				<?php
 						for ($i = 0; $i < MAXCACHE; $i++) {
-							echo '<tr>';
+							echo '<tr id="cache-'.$i.'">';
 								echo '<th>'.decbin($i).'</th>';
 								echo '<td>'.$cache[$i]['status'].'</td>';
 								echo '<td>'.$cache[$i]['preinfo'].'</td>';
@@ -47,8 +47,8 @@ include("start.php");
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>Bloco</th>
-					<th>cell 0</th>
-					<th>cell 1</th>
+					<th>cell 00</th>
+					<th>cell 01</th>
 					<th>cell 10</th>
 					<th>cell 11</th>
 				</tr>

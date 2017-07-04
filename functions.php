@@ -28,13 +28,13 @@ function startDB(){//INICIALIZAR O BANCO
 				FOREIGN KEY (block) REFERENCES mem(block)";
 	$sql = mysql_query($query) or print(mysql_error());
 	
-	//população da tabela
+	//população da tabela de memória
 	for($i = 0; $i < MAXMEM; $i++){
-		$sql = "INSERT INTO mem(block) VALUES ('".$i."')";
+		$sql = "INSERT INTO mem(block) VALUES ('".decbin($i)."')";
 		mysql_query($sql) or print(mysql_error());
 		for($j = 0; $j < MAXCELL; $j++){
-			$info = rand(0,255);
-			$sql = "INSERT INTO block(cell, info, block) VALUES('".$j."', '".$info."','".$i."')";
+			$info = decbin(rand(0,255));
+			$sql = "INSERT INTO block(cell, info, block) VALUES('".decbin($j)."', '".$info."','".decbin($i)."')";
 			mysql_query($sql) or print(mysql_error());
 		}
 	}

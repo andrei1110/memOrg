@@ -11,12 +11,12 @@
 include("functions.php");
 
 //INICIALIZAÇÃO DA CACHE
-for($contcache = 0; $contcache <= MAXCACHE; $contcache++){
-	$cache[$contcache]['info'] = 'NULL';
-	$cache[$contcache]['preinfo'] = 'NULL';
-	$cache[$contcache]['status'] = 'NULL';
+for($countcache = 0; $countcache <= MAXCACHE; $countcache++){
+	$cache[$countcache]['info'] = 'NULL';
+	$cache[$countcache]['preinfo'] = 'NULL';
+	$cache[$countcache]['status'] = 'NULL';
 }
 
-
+startDB();
 
 ?>
