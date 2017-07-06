@@ -31,7 +31,7 @@ include("start.php");
 				<tr>
 					<th>Quadro</th>
 					<th>Estado</th>
-					<th>Info Anterior</th>
+					<!-- <th>Info Anterior</th> -->
 					<th>Info</th>
 				</tr>
 				<?php
@@ -42,7 +42,7 @@ include("start.php");
 							echo '<tr id="cache-'.$i.'">';
 								echo '<th id="cache-adr-'.$i.'">'.decbin($i).'</th>';
 								echo '<td id="cache-status-'.$i.'">'.$status.'</td>';
-								echo '<td id="cache-preinfo-'.$i.'">'.$preinfo.'</td>';
+								//echo '<td id="cache-preinfo-'.$i.'">'.$preinfo.'</td>';
 								echo '<td id="cache-info-'.$i.'">'.$info.'</td>';
 							echo '</tr>';
 						}
