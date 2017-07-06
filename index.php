@@ -15,10 +15,14 @@ include("start.php");
 	
 	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
 
 <div class="container">
+
+ <div id="teste">
+ </div>
 
 	<div class="row">
 		<div class="col-md-6">
@@ -60,7 +64,7 @@ include("start.php");
 					$mem = loadMem();
 					$j = 0;
 					for ($i = 0; $i < MAXMEM; $i++) {
-						echo '<tr>';
+						echo '<tr onClick="memToCache('.$i.')">';
 							echo '<th>'.decbin($i).'</th>';
 							while($mem[$j]['block'] == $i){
 								echo '<td>'.decbin($mem[$j]['info']).'</td>';

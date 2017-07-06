@@ -1,5 +1,5 @@
 <?php
 
-	FUNCIONA!
+	echo "FUNCIONA! ".$_POST['adr'];
 
 ?>
