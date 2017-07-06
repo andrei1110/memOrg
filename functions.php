@@ -43,4 +43,18 @@ function startDB(){//INICIALIZAR O BANCO
 }
 
 
+function loadMem(){//Carregar a memória
+	connect();
+	
+	$n = 0;
+	$query = "SELECT * FROM block";
+	$sql =  mysql_query($query) or print(mysql_error());
+	while($row[$n] = mysql_fetch_assoc($sql)){
+		$n++;
+	}
+	
+	mysql_close(connect());
+	return $row;
+}
+
 ?>

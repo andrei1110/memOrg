@@ -31,11 +31,14 @@ include("start.php");
 				</tr>
 				<?php
 						for ($i = 0; $i < MAXCACHE; $i++) {
+							$status = $cache[$i]['status'];
+							$preinfo = $cache[$i]['preinfo'];
+							$info = $cache[$i]['info'];
 							echo '<tr id="cache-'.$i.'">';
-								echo '<th>'.decbin($i).'</th>';
-								echo '<td>'.$cache[$i]['status'].'</td>';
-								echo '<td>'.$cache[$i]['preinfo'].'</td>';
-								echo '<td>'.$cache[$i]['info'].'</td>';
+								echo '<th id="cache-adr-'.$i.'">'.decbin($i).'</th>';
+								echo '<td id="cache-status-'.$i.'">'.$status.'</td>';
+								echo '<td id="cache-preinfo-'.$i.'">'.$preinfo.'</td>';
+								echo '<td id="cache-info-'.$i.'">'.$info.'</td>';
 							echo '</tr>';
 						}
 				?>
@@ -53,15 +56,17 @@ include("start.php");
 					<th>cell 11</th>
 				</tr>
 				<?php
-						for ($i = 0; $i < MAXMEM; $i++) {
-							echo '<tr>';
-								echo '<th>'.decbin($i).'</th>';
-								echo '<td>'.decbin(rand(0,255)).'</td>';
-								echo '<td>'.decbin(rand(0,255)).'</td>';
-								echo '<td>'.decbin(rand(0,255)).'</td>';
-								echo '<td>'.decbin(rand(0,255)).'</td>';
-							echo '</tr>';
-						}
+					$mem = loadMem();
+					$j = 0;
+					for ($i = 0; $i < MAXMEM; $i++) {
+						echo '<tr>';
+							echo '<th>'.decbin($i).'</th>';
+							while($mem[$j]['block'] == $i){
+								echo '<td>'.decbin($mem[$j]['info']).'</td>';
+								$j++;
+							}
+						echo '</tr>';
+					}
 				?>
 			</table>
 		</div> <!-- FIM GRID 6 -->
