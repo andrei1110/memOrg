@@ -14,7 +14,7 @@ include("functions.php");
 for($countcache = 0; $countcache <= MAXCACHE; $countcache++){
 	$cache[$countcache]['info'] = 'NULL';
 	$cache[$countcache]['preinfo'] = 'NULL';
-	$cache[$countcache]['status'] = 'NULL';
+	$cache[$countcache]['tag'] = 'NULL';
 }
 
 //INICIALIZAÇÃO DA MEMÓRIA PRINCIPAL

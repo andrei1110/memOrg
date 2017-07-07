@@ -30,18 +30,18 @@ include("start.php");
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>Quadro</th>
-					<th>Estado</th>
+					<th>Tag</th>
 					<!-- <th>Info Anterior</th> -->
 					<th>Info</th>
 				</tr>
 				<?php
 						for ($i = 0; $i < MAXCACHE; $i++) {
-							$status = $cache[$i]['status'];
-							$preinfo = $cache[$i]['preinfo'];
+							$tag = $cache[$i]['tag'];
+							//$preinfo = $cache[$i]['preinfo'];
 							$info = $cache[$i]['info'];
 							echo '<tr id="cache-'.$i.'">';
 								echo '<th id="cache-adr-'.$i.'">'.decbin($i).'</th>';
-								echo '<td id="cache-status-'.$i.'">'.$status.'</td>';
+								echo '<td id="cache-tag-'.$i.'">'.$tag.'</td>';
 								//echo '<td id="cache-preinfo-'.$i.'">'.$preinfo.'</td>';
 								echo '<td id="cache-info-'.$i.'">'.$info.'</td>';
 							echo '</tr>';

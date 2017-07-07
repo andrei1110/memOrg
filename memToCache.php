@@ -11,8 +11,9 @@
 	mysql_close(connect());
 	
 	$cache = $_POST['adr']%16;
-	$status = "miss";
+	$tag = decbin($_POST['adr']);
+	$tag = substr($tag, 0, -4);
 	echo '<th id="cache-adr-'.$cache.'">'.decbin($cache).'</th>';
-	echo '<td id="cache-status-'.$cache.'">'.$status.'</td>';
+	echo '<td id="cache-tag-'.$cache.'">'.$tag.'</td>';
 	echo '<td id="cache-info-'.$cache.'">'.$info.'</td>';
 ?>
