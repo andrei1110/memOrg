@@ -1,3 +1,7 @@
+function toChange(info){
+	$("#change").val(info);
+}
+
 function memToCache(adr){
 	$.post("memToCache.php", {adr : adr},
 	function(data){
