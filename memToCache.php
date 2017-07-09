@@ -14,7 +14,7 @@
 	$tag = str_pad(decbin($_POST['adr']), 8, "0", STR_PAD_LEFT);
 	$tag = substr($tag, 0, -4);
 	$validate = 1;
-	echo '<th id="cache-adr-'.$cache.'" onClick="toChange('."'".$info."'".')">'.decbin($cache).'</th>';
+	echo '<th id="cache-adr-'.$cache.'" onClick="toChange('."'".$info."'".')">'.str_pad(decbin($cache), 4, "0", STR_PAD_LEFT).'</th>';
 	echo '<td id="cache-tag-'.$cache.'" onClick="toChange('."'".$info."'".')">'.$validate.'</td>';
 	echo '<td id="cache-tag-'.$cache.'" onClick="toChange('."'".$info."'".')">'.$tag.'</td>';
 	echo '<td id="cache-info-'.$cache.'" onClick="toChange('."'".$info."'".')">'.$info.'</td>';
