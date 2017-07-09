@@ -22,13 +22,15 @@ include("start.php");
 <div class="container">
 
 	<div class="row">
-			<div class="col-sm-3">
-				<div class="col-offset-2">
+		<div class="container">
+			<div class="col-offset-2">
+				<div class="col-sm-4">
 					<label for="change">Alterar valor</label>
 					<input type="text" class="form-control" id="change" value="">
 					<button class="btn btn-default" type="submit">Alterar</button>
 				</div>
 			</div>
+		</div>
 	</div>
 
  <div id="teste">
