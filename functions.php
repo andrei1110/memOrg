@@ -17,24 +17,26 @@ function startDB(){//INICIALIZAR O BANCO
 	
 	//criação dos blocos (256 blocos)
 	$query = "CREATE TABLE IF NOT EXISTS mp(
-				block INT PRIMARY KEY)";
+				block VARCHAR(8) PRIMARY KEY)";
 	$sql = mysql_query($query) or print(mysql_error());
 	
 	//criação das células, cada célula com 1 byte (4 células por bloco)
 	$query = "CREATE OR REPLACE TABLE block(
-				cel INT,
-				info INT,
-				block INT NOT NULL, 
+				cel VARCHAR(2),
+				info VARCHAR(8),
+				block VARCHAR(8) NOT NULL, 
 				FOREIGN KEY (block) REFERENCES mp(block))";
 	$sql = mysql_query($query) or print(mysql_error());
 	
 	//população da tabela de memória
 	for($i = 0; $i < MAXMEM; $i++){
-		$sql = "INSERT INTO mp(block) VALUES ('".$i."')";
+		$block = str_pad(decbin($i), 8, "0", STR_PAD_LEFT);
+		$sql = "INSERT INTO mp(block) VALUES ('".$block."')";
 		mysql_query($sql) or print(mysql_error());
 		for($j = 0; $j < MAXCELL; $j++){
-			$info = rand(0,255);
-			$sql = "INSERT INTO block(cel, info, block) VALUES('".$j."', '".$info."','".$i."')";
+			$cell = str_pad(decbin($i), 2, "0", STR_PAD_LEFT);
+			$info = str_pad(decbin(rand(0,255)), 8, "0", STR_PAD_LEFT);
+			$sql = "INSERT INTO block(cel, info, block) VALUES('".$cell."', '".$info."','".$block."')";
 			mysql_query($sql) or print(mysql_error());
 		}
 	}

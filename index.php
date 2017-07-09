@@ -30,19 +30,19 @@ include("start.php");
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>Quadro</th>
+					<th>Validade</th>
 					<th>Tag</th>
-					<!-- <th>Info Anterior</th> -->
 					<th>Info</th>
 				</tr>
 				<?php
 						for ($i = 0; $i < MAXCACHE; $i++) {
 							$tag = $cache[$i]['tag'];
-							//$preinfo = $cache[$i]['preinfo'];
 							$info = $cache[$i]['info'];
+							$validate = $cache[$i]['validate'];
 							echo '<tr id="cache-'.$i.'">';
-								echo '<th id="cache-adr-'.$i.'">'.decbin($i).'</th>';
+								echo '<th id="cache-adr-'.$i.'">'.str_pad(decbin($i), 4, "0", STR_PAD_LEFT).'</th>';
+								echo '<td id="cache-tag-'.$i.'">'.$validate.'</td>';
 								echo '<td id="cache-tag-'.$i.'">'.$tag.'</td>';
-								//echo '<td id="cache-preinfo-'.$i.'">'.$preinfo.'</td>';
 								echo '<td id="cache-info-'.$i.'">'.$info.'</td>';
 							echo '</tr>';
 						}
@@ -65,9 +65,10 @@ include("start.php");
 					$j = 0;
 					for ($i = 0; $i < MAXMEM; $i++) {
 						echo '<tr onClick="memToCache('.$i.')">';
-							echo '<th>'.decbin($i).'</th>';
-							while($mem[$j]['block'] == $i){
-								echo '<td>'.decbin($mem[$j]['info']).'</td>';
+							$id = str_pad(decbin($i), 8, "0", STR_PAD_LEFT);
+							echo '<th>'.$id.'</th>';
+							while($mem[$j]['block'] == $id){
+								echo '<td>'.$mem[$j]['info'].'</td>';
 								$j++;
 							}
 						echo '</tr>';
