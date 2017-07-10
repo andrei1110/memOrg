@@ -59,4 +59,23 @@ function loadMem(){//Carregar a memória
 	return $row;
 }
 
+function memToCache($adr){
+	connect();
+	$query = "SELECT info FROM block WHERE block =".str_pad(decbin($_POST['adr']),"0",8,STR_PAD_LEFT)."";
+	$sql = mysql_query($query) or print(mysql_error());
+	$info = "";
+	while($row = mysql_fetch_assoc($sql)){
+		$info .= $row['info'];
+	}
+	mysql_close(connect());
+	
+	$r['info'] = $info;
+	$r['cache'] = $adr%16;
+	$r['tag'] = str_pad(decbin($_POST['adr']), 8, "0", STR_PAD_LEFT);
+	$r['tag'] = substr($r['tag'], 0, -4);
+	$r['validate'] = 1;
+	
+	return $r;
+}
+
 ?>
