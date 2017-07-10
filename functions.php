@@ -90,7 +90,8 @@ function writeMem($tag, $index, $info){
 	$infoW[2] = substr($info,16,8);
 	$infoW[3] = substr($info,24,8);
 	
-	$query = "UPDATE block SET ";
+	$query = "UPDATE mp SET cell00 = '".$infoW[0]."', cell01 = '".$infoW[1]."', cell10 = '".$infoW[2]."', cell11 = '".$infoW[3]."' WHERE adr='".$adr."'";
+	$sql = mysql_query($query) or print(mysql_error());
 	
 	mysql_close(connect());
 	
