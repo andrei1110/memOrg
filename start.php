@@ -18,6 +18,6 @@ for($countcache = 0; $countcache <= MAXCACHE; $countcache++){
 }
 
 //INICIALIZAÇÃO DA MEMÓRIA PRINCIPAL
-//startDB();
+startDB();
 
 ?>

@@ -79,10 +79,10 @@ include("start.php");
 						echo '<tr onClick="memToCache('.$i.')">';
 							$id = str_pad(decbin($i), 8, "0", STR_PAD_LEFT);
 							echo '<th>'.$id.'</th>';
-							while($mem[$j]['block'] == $id){
-								echo '<td>'.$mem[$j]['info'].'</td>';
-								$j++;
-							}
+							echo '<td>'.$mem[$j]['cell00'].'</td>';
+							echo '<td>'.$mem[$j]['cell01'].'</td>';
+							echo '<td>'.$mem[$j]['cell10'].'</td>';
+							echo '<td>'.$mem[$j]['cell11'].'</td>';
 						echo '</tr>';
 					}
 				?>
