@@ -71,6 +71,19 @@ include("start.php");
 
 		<div class="col-md-6">
 			<h3>Memória principal</h3>
+			<div class="row">
+				<div class="col-md-6">
+					<select class="form-control" onchange="memToCache(this.value)">
+						<option value="">Selecione um endereço</option>
+						<?php
+						for($i = 0; $i < MAXMEM; $i++){
+							echo '<option value="'.$i.'">'.str_pad(decbin($i), 8, "0", STR_PAD_LEFT).'</option>';
+						}
+						?>
+					</select>
+				</div>
+			</div>
+			<br/>
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>Bloco</th>
