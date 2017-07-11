@@ -24,6 +24,13 @@ include("start.php");
 
 <div class="container">
 
+	
+	<!-- <h1>Organização de Computadores</h1>
+	<h2>Trabalho sobre cache</h2>
+	<h3>Cache de mapeamento direto com write-through</h3>
+	<h3>Andrei Toledo, Jardel Anton e Marcelo Acordi</h3> -->
+	
+
 	<div class="row">
 		<div class="container">
 			<div class="col-offset-2">
@@ -36,8 +43,13 @@ include("start.php");
 		</div>
 	</div>
 
- <div id="teste">
- </div>
+	
+<div class="row">
+	<div id="stats" class="container" onload="showStats()">
+		<br/>
+		<button class="btn btn-default" onclick="showStats()">Mostrar estatísticas</button>
+	</div>
+</div>
 
 	<div class="row">
 		<div class="col-md-6">
@@ -73,7 +85,7 @@ include("start.php");
 			<h3>Memória principal</h3>
 			<div class="row">
 				<div class="col-md-6">
-					<select class="form-control" onchange="memToCache(this.value)">
+					<select class="form-control" onChange="memToCache(this.value)">
 						<option value="">Selecione um endereço</option>
 						<?php
 						for($i = 0; $i < MAXMEM; $i++){

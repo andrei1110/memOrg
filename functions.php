@@ -146,7 +146,7 @@ function resetStats(){
 	
 	$_SESSION['stats']['control'] = 1;
 	$_SESSION['stats']['miss'] = 0;
-	$_SESSION['stats']['hit'] = 0;
+	$_SESSION['stats']['hits'] = 0;
 	$_SESSION['stats']['writemp'] = 0;
 }
 
@@ -155,7 +155,7 @@ function stats($type){
 		$_SESSION['stats']['miss'] ++;
 	}
 	if($type == "HIT"){
-		$_SESSION['stats']['hit'] ++;
+		$_SESSION['stats']['hits'] ++;
 	}
 	if($type == "WRITEMP"){
 		$_SESSION['stats']['writemp'] ++;
