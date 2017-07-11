@@ -81,15 +81,14 @@ include("start.php");
 				</tr>
 				<?php
 					$mem = loadMem();
-					$j = 0;
 					for ($i = 0; $i < MAXMEM; $i++) {
 						echo '<tr onClick="memToCache('.$i.')">';
 							$id = str_pad(decbin($i), 8, "0", STR_PAD_LEFT);
 							echo '<th>'.$id.'</th>';
-							echo '<td>'.$mem[$j]['cell00'].'</td>';
-							echo '<td>'.$mem[$j]['cell01'].'</td>';
-							echo '<td>'.$mem[$j]['cell10'].'</td>';
-							echo '<td>'.$mem[$j]['cell11'].'</td>';
+							echo '<td>'.$mem[$i]['cell00'].'</td>';
+							echo '<td>'.$mem[$i]['cell01'].'</td>';
+							echo '<td>'.$mem[$i]['cell10'].'</td>';
+							echo '<td>'.$mem[$i]['cell11'].'</td>';
 						echo '</tr>';
 					}
 				?>

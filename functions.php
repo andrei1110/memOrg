@@ -132,10 +132,11 @@ function missOrHit($adr){
 		$search = $_SESSION['cache'][$i]['tag'].str_pad(decbin($i), 4, "0", STR_PAD_LEFT);
 		if(str_pad(decbin($adr), 8 ,"0", STR_PAD_LEFT) == $search){
 			$r = "HIT";
+			stats($r);
 			return $r;
 		}
 	}
-
+	stats($r);
 	return $r;
 }
 
@@ -149,7 +150,7 @@ function resetStats(){
 	$_SESSION['stats']['writemp'] = 0;
 }
 
-function status($type){
+function stats($type){
 	if($type == "MISS"){
 		$_SESSION['stats']['miss'] ++;
 	}
