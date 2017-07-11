@@ -48,6 +48,7 @@ function startDB(){//INICIALIZAR O BANCO
 function startCache(){
 	for($countcache = 0; $countcache <= MAXCACHE; $countcache++){
 		$cache[$countcache]['info'] = 'NULL';
+		$cache[$countcache]['missorhit'] = '';
 		$cache[$countcache]['validate'] = '0';
 		$cache[$countcache]['tag'] = 'NULL';
 	}
@@ -72,8 +73,10 @@ function loadMem(){//Carregar a memória
 function memToCache($adr){//transferir da memória para a cache
 
 	connect();
+	
+	$r['missorhit'] = missOrHit($adr);
 
-	$query = "SELECT * FROM mp WHERE adr =".str_pad(decbin($_POST['adr']),"0",8,STR_PAD_LEFT)."";
+	$query = "SELECT * FROM mp WHERE adr =".str_pad(decbin($adr),"0",8,STR_PAD_LEFT)."";
 	$sql = mysql_query($query) or print(mysql_error());
 	
 	$info = "";
@@ -87,7 +90,7 @@ function memToCache($adr){//transferir da memória para a cache
 	//retorno das informações para aparecer no html
 	$r['info'] = $info;
 	$r['cache'] = $adr%16;
-	$r['tag'] = str_pad(decbin($_POST['adr']), 8, "0", STR_PAD_LEFT);
+	$r['tag'] = str_pad(decbin($adr), 8, "0", STR_PAD_LEFT);
 	$r['tag'] = substr($r['tag'], 0, -4);
 	$r['validate'] = 1;
 	
@@ -95,6 +98,7 @@ function memToCache($adr){//transferir da memória para a cache
 	//salva as informações na cache
 	$_SESSION['cache'][$adr%16]['tag'] = $r['tag'];
 	$_SESSION['cache'][$adr%16]['info'] = $r['info'];
+	$_SESSION['cache'][$adr%16]['missorhit'] = $r['missorhit'];
 	$_SESSION['cache'][$adr%16]['validate'] = $r['validate'];
 	
 	return $r;
@@ -122,16 +126,39 @@ function writeMem($tag, $index, $info){
 
 
 function missOrHit($adr){
+
 	$r = "MISS";
 	for($i = 0; $i < MAXCACHE; $i++){
-		$search = str_pad(decbin($i), 4, "0", STR_PAD_LEFT).$_SESSION['cache']['i']['tag'];
-		if($adr == $search){
+		$search = $_SESSION['cache'][$i]['tag'].str_pad(decbin($i), 4, "0", STR_PAD_LEFT);
+		if(str_pad(decbin($adr), 8 ,"0", STR_PAD_LEFT) == $search){
 			$r = "HIT";
-			break;
+			return $r;
 		}
 	}
-		
+
 	return $r;
+}
+
+function resetStats(){
+	
+	if(isset($_SESSION['stats']['control'])) unset($_SESSION['stats']);
+	
+	$_SESSION['stats']['control'] = 1;
+	$_SESSION['stats']['miss'] = 0;
+	$_SESSION['stats']['hit'] = 0;
+	$_SESSION['stats']['writemp'] = 0;
+}
+
+function status($type){
+	if($type == "MISS"){
+		$_SESSION['stats']['miss'] ++;
+	}
+	if($type == "HIT"){
+		$_SESSION['stats']['hit'] ++;
+	}
+	if($type == "WRITEMP"){
+		$_SESSION['stats']['writemp'] ++;
+	}
 }
 
 ?>

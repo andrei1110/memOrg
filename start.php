@@ -14,6 +14,9 @@ include("functions.php");
 
 startCache();
 
+//RESETA AS ESTATÍSTICAS
+resetStats();
+
 //INICIALIZAÇÃO DA MEMÓRIA PRINCIPAL
 //startDB();
 

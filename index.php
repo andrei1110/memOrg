@@ -45,6 +45,7 @@ include("start.php");
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>Quadro</th>
+					<th>Miss or Hit</th>
 					<th>Validade</th>
 					<th>Tag</th>
 					<th>Info</th>
@@ -55,8 +56,10 @@ include("start.php");
 						$tag = $cache[$i]['tag'];
 						$info = $cache[$i]['info'];
 						$validate = $cache[$i]['validate'];
+						$missorhit = $cache[$i]['missorhit'];
 						echo '<tr id="cache-'.$i.'">';
 							echo '<th id="cache-adr-'.$i.'">'.str_pad(decbin($i), 4, "0", STR_PAD_LEFT).'</th>';
+							echo '<td id="cache-tag-'.$i.'">'.$missorhit.'</td>';
 							echo '<td id="cache-tag-'.$i.'">'.$validate.'</td>';
 							echo '<td id="cache-tag-'.$i.'">'.$tag.'</td>';
 							echo '<td id="cache-info-'.$i.'">'.$info.'</td>';
