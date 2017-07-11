@@ -8,6 +8,9 @@
 */
 
 include("start.php");
+
+//require_once("start.php");
+
 ?>
 <head>
 	<title>Trabalho Organização</title>
@@ -47,17 +50,18 @@ include("start.php");
 					<th>Info</th>
 				</tr>
 				<?php
-						for ($i = 0; $i < MAXCACHE; $i++) {
-							$tag = $cache[$i]['tag'];
-							$info = $cache[$i]['info'];
-							$validate = $cache[$i]['validate'];
-							echo '<tr id="cache-'.$i.'">';
-								echo '<th id="cache-adr-'.$i.'">'.str_pad(decbin($i), 4, "0", STR_PAD_LEFT).'</th>';
-								echo '<td id="cache-tag-'.$i.'">'.$validate.'</td>';
-								echo '<td id="cache-tag-'.$i.'">'.$tag.'</td>';
-								echo '<td id="cache-info-'.$i.'">'.$info.'</td>';
-							echo '</tr>';
-						}
+					$cache = $_SESSION['cache'];
+					for ($i = 0; $i < MAXCACHE; $i++) {
+						$tag = $cache[$i]['tag'];
+						$info = $cache[$i]['info'];
+						$validate = $cache[$i]['validate'];
+						echo '<tr id="cache-'.$i.'">';
+							echo '<th id="cache-adr-'.$i.'">'.str_pad(decbin($i), 4, "0", STR_PAD_LEFT).'</th>';
+							echo '<td id="cache-tag-'.$i.'">'.$validate.'</td>';
+							echo '<td id="cache-tag-'.$i.'">'.$tag.'</td>';
+							echo '<td id="cache-info-'.$i.'">'.$info.'</td>';
+						echo '</tr>';
+					}
 				?>
 			</table>
 		</div> <!-- FIM GRID 6 -->

@@ -9,7 +9,3 @@ function memToCache(adr){
 		$("#cache-"+cacheAdr).html(data); //SUBSTITUIR PELO ID DA CACHE
 	}, "html");
 }
-
-function cacheToMain(){
-	//implementar
-}

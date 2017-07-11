@@ -11,13 +11,10 @@
 include("functions.php");
 
 //INICIALIZAÇÃO DA CACHE
-for($countcache = 0; $countcache <= MAXCACHE; $countcache++){
-	$cache[$countcache]['info'] = 'NULL';
-	$cache[$countcache]['validate'] = '0';
-	$cache[$countcache]['tag'] = 'NULL';
-}
+
+startCache();
 
 //INICIALIZAÇÃO DA MEMÓRIA PRINCIPAL
-startDB();
+//startDB();
 
 ?>
