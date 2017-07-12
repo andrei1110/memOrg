@@ -6,15 +6,18 @@
 <button class="btn btn-default" onclick="showStats()">Atualizar estatísticas</button>
 <br/>
 
-<p>
+<div class="col-sm-6">
 	Número de hits: <?php echo $_SESSION['stats']['hits'];?>
-</p>
-<p>
+</div>
+<div class="col-sm-6">
 	Número de miss: <?php echo $_SESSION['stats']['miss'];?>
-</p>
-<p>
+</div>
+<div class="col-sm-6">
 	Número de escritas na memória: <?php echo $_SESSION['stats']['writemp'];?>
-</p>
-<p>
+</div>
+<div class="col-sm-6">
 	Número de leituras na memória: <?php echo $_SESSION['stats']['readmem'];?>
-</p>
+</div>
+<div class="col-sm-6">
+	Número de acessos: <?php echo $_SESSION['stats']['access'];?>
+</div>

@@ -78,7 +78,7 @@ include("start.php");
 						$validate = $cache[$i]['validate'];
 						$missorhit = $cache[$i]['missorhit'];
 						echo '<tr id="cache-'.$i.'">';
-							echo '<th id="cache-adr-'.$i.'">'.str_pad(decbin($i), 4, "0", STR_PAD_LEFT).'</th>';
+							echo '<th id="cache-adr-'.$i.'">'.str_pad(decbin($i), CACHEADRESS, "0", STR_PAD_LEFT).'</th>';
 							echo '<td id="cache-tag-'.$i.'">'.$missorhit.'</td>';
 							echo '<td id="cache-tag-'.$i.'">'.$validate.'</td>';
 							echo '<td id="cache-tag-'.$i.'">'.$tag.'</td>';
@@ -99,7 +99,7 @@ include("start.php");
 						<option value="">Selecione um endereço</option>
 						<?php
 						for($i = 0; $i < MAXMEM; $i++){
-							echo '<option value="'.$i.'">'.str_pad(decbin($i), 8, "0", STR_PAD_LEFT).'</option>';
+							echo '<option value="'.$i.'">'.str_pad(decbin($i), MEMADRESS, "0", STR_PAD_LEFT).'</option>';
 						}
 						?>
 					</select>
@@ -118,7 +118,7 @@ include("start.php");
 					$mem = loadMem();
 					for ($i = 0; $i < MAXMEM; $i++) {
 						echo '<tr onClick="memToCache('.$i.')">';
-							$id = str_pad(decbin($i), 8, "0", STR_PAD_LEFT);
+							$id = str_pad(decbin($i), MEMADRESS, "0", STR_PAD_LEFT);
 							echo '<th>'.$id.'</th>';
 							echo '<td>'.$mem[$i]['cell00'].'</td>';
 							echo '<td>'.$mem[$i]['cell01'].'</td>';
