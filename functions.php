@@ -77,8 +77,6 @@ function memToCache($adr){//TRANSFERIR DA MEMÓRIA PARA A CACHE
 
 function writeMem($tag, $index, $info){//ESCREVER NA MEMÓRIA
 	
-	connect();
-	
 	
 	$cell = INFOSIZE/4;
 	//concatena o index da memória (bits menos significativos)  com a tag (bits mais significativos) para formar o endereço de memória
@@ -89,10 +87,10 @@ function writeMem($tag, $index, $info){//ESCREVER NA MEMÓRIA
 	$infoW[2] = substr($info,$cell*2,$cell);
 	$infoW[3] = substr($info,$cell*3,$cell);
 	
-	$query = "UPDATE mp SET cell00 = '".$infoW[0]."', cell01 = '".$infoW[1]."', cell10 = '".$infoW[2]."', cell11 = '".$infoW[3]."' WHERE adr='".$adr."'";
-	$sql = mysql_query($query) or print(mysql_error());
-	
-	mysql_close(connect());
+	$_SESSION['mp'][bindec($adr)]['cell00'] = $infoW[0];
+	$_SESSION['mp'][bindec($adr)]['cell01'] = $infoW[1];
+	$_SESSION['mp'][bindec($adr)]['cell10'] = $infoW[2];
+	$_SESSION['mp'][bindec($adr)]['cell11'] = $infoW[3];
 	
 	stats("WRITEMP");
 	
