@@ -47,6 +47,7 @@ function memToCache($adr){//TRANSFERIR DA MEMÓRIA PARA A CACHE
 	if($r['missorhit'] == 'MISSCACHE'){
 		$info = $_SESSION['mp'][$adr]['cell00'].$_SESSION['mp'][$adr]['cell01'].$_SESSION['mp'][$adr]['cell10'].$_SESSION['mp'][$adr]['cell11'];
 		stats('WRITECACHE');
+		stats("READMEM");
 	}
 	else{
 		$info = $_SESSION['cache'][$adr%16]['info'];
@@ -69,10 +70,6 @@ function memToCache($adr){//TRANSFERIR DA MEMÓRIA PARA A CACHE
 		$info = $_SESSION['cache'][$adr%MAXCACHE]['info'];
 		writeMem($tag, $index, $info);
 	}*/
-	
-	if($r['missorhit'] == "MISS"){
-		stats("READMEM");
-	}
 	
 	//salva as informações na cache
 	$_SESSION['cache'][$adr%MAXCACHE]['tag'] = $r['tag'];
