@@ -112,7 +112,7 @@ function writeMem($tag, $index, $info){//ESCREVER NA MEMÓRIA
 	
 	stats("WRITEMP");
 	
-	return 1;
+	return bindec($adr);
 }
 
 

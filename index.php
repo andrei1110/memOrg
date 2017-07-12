@@ -39,6 +39,7 @@ include("start.php");
 			<label for="change">Binário</label>
 			<input type="text" class="form-control" width="35" id="change-bin" value="" pattern="[0-1]{24}">
 			<input type="hidden" id="tag-change" value="">
+			<input type="hidden" id="adr-change" value="">
 			<input type="hidden" id="index-change" value="">
 			<button class="btn btn-default" onClick="alterValue()" type="submit">Alterar</button>
 		</div>

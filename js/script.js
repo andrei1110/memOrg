@@ -1,7 +1,8 @@
-function toChange(index, tag, info){
+function toChange(index, tag, info, adr){
 	$("#change-bin").val(info);
 	$("#index-change").val(index);
 	$("#tag-change").val(tag);
+	$("#adr-change").val(adr);
 	//var dec = parseInt( info, 2);
 	//$("#change-dec").val(dec);
 }
@@ -25,6 +26,7 @@ function memToCache(adr){
 function alterValue(){
 	var val = $("#change-bin").val();
 	var tag = $("#tag-change").val();
+	var adr = $("#adr-change").val();
 	var index = $("#index-change").val();
 	$.post("alterInfoCache.php", {val : val, tag : tag, index : index},
 	function(data){
@@ -32,6 +34,6 @@ function alterValue(){
 	}, "html");
 	$.post("alterInfoMp.php", {val : val, tag : tag, index : index},
 	function(data){
-		$("#mp-adr-"+mpAdr).html(data); 
+		$("#mp-adr-"+adr).html(data); 
 	}, "html");
 }
