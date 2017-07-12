@@ -1,5 +1,7 @@
-function toChange(info){
+function toChange(index, tag, info){
 	$("#change-bin").val(info);
+	$("#index-change").val(index);
+	$("#tag-change").val(tag);
 	//var dec = parseInt( info, 2);
 	//$("#change-dec").val(dec);
 }
@@ -19,3 +21,16 @@ function memToCache(adr){
 		$("#cache-"+cacheAdr).html(data); 
 	}, "html");
 }
+
+/*function alterValue(){
+	var val = document.getElementById("#change-bin");
+	$.post("alterInfoCache.php", {val : val},
+	function(data){
+		$("#cache-"+cacheAdr").html(data); 
+	}, "html");
+	$.post("alterInfoMp.php", {val : val},
+	function(data){
+		$("#mp-adr-"+mpAdr).html(data); 
+	}, "html");
+}
+*/

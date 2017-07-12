@@ -38,7 +38,9 @@ include("start.php");
 		<div class="col-sm-6 form-inline">
 			<label for="change">Binário</label>
 			<input type="text" class="form-control" width="35" id="change-bin" value="" disabled pattern="[0-1]{32}">
-			<button class="btn btn-default" type="submit">Alterar</button>
+			<input type="hidden" id="tag-change" value="">
+			<input type="hidden" id="index-change" value="">
+			<button class="btn btn-default" onClick="alterValue()" type="submit">Alterar</button>
 		</div>
 		<!--<div class="col-sm-2">
 			<label for="change">Decimal</label>
@@ -116,7 +118,7 @@ include("start.php");
 				</tr>
 				<?php
 					for ($i = 0; $i < MAXMEM; $i++) {
-						echo '<tr onClick="memToCache('.$i.')">';
+						echo '<tr onClick="memToCache('.$i.')" id="mp-adr-'.$i.'">';
 							$id = str_pad(decbin($i), MEMADRESS, "0", STR_PAD_LEFT);
 							echo '<th>'.$id.'</th>';
 							echo '<td>'.$_SESSION['mp'][$i]['cell00'].'</td>';
