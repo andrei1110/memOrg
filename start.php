@@ -18,6 +18,6 @@ startCache();
 resetStats();
 
 //INICIALIZAÇÃO DA MEMÓRIA PRINCIPAL
-startDB();
+startMP();
 
 ?>

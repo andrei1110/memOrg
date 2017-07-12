@@ -8,42 +8,25 @@ include("struct.php");
 
 session_start();
 
-function connect(){ //FUNÇÃO PARA CONEXÃO NO BANCO DE DADOS
-	$conn = mysql_connect(HOST, USER, PASSWORD) or print(msql_error());
-	mysql_select_db(DB, $conn);
-	return $conn;
-}
-
-function startDB(){//INICIALIZAR O BANCO
-	connect();
+function startMP(){//INICIALIZAR A MP
 	
 	
 	$cell = INFOSIZE/4;
 	
 	$rand = pow(2,$cell);
 	
-	//criação dos blocos (256 blocos) com as células
-	$query = "CREATE TABLE IF NOT EXISTS mp(
-				adr VARCHAR(".MEMADRESS."),
-				cell00 VARCHAR(".$cell."),
-				cell01 VARCHAR(".$cell."),
-				cell10 VARCHAR(".$cell."),
-				cell11 VARCHAR(".$cell.")
-				)";
-	$sql = mysql_query($query) or print(mysql_error());
-	
-	//população da tabela de memória
 	for($i = 0; $i < MAXMEM; $i++){
-		$block = str_pad(decbin($i), MEMADRESS, "0", STR_PAD_LEFT);
 		$info[0] = str_pad(decbin(rand(0,$rand)), $cell, "0", STR_PAD_LEFT);
 		$info[1] = str_pad(decbin(rand(0,$rand)), $cell, "0", STR_PAD_LEFT);
 		$info[2] = str_pad(decbin(rand(0,$rand)), $cell, "0", STR_PAD_LEFT);
 		$info[3] = str_pad(decbin(rand(0,$rand)), $cell, "0", STR_PAD_LEFT);
-		$sql = "INSERT INTO mp(adr, cell00, cell01, cell10, cell11) VALUES ('".$block."','".$info[0]."','".$info[1]."', '".$info[2]."', '".$info[3]."')";
-		mysql_query($sql) or print(mysql_error());
+		
+		$_SESSION['mp'][$i]['cell00'] = $info[0];
+		$_SESSION['mp'][$i]['cell01'] = $info[1];
+		$_SESSION['mp'][$i]['cell10'] = $info[2];
+		$_SESSION['mp'][$i]['cell11'] = $info[3];
 	}
 	
-	mysql_close(connect());
 }
 
 function startCache(){//INICIAR A CACHE
@@ -56,38 +39,12 @@ function startCache(){//INICIAR A CACHE
 	$_SESSION['cache'] = $cache;
 }
 
-
-function loadMem(){//CARREGAR A MEMÓRIA
-	connect();
-	
-	$n = 0;
-	$query = "SELECT * FROM mp";
-	$sql =  mysql_query($query) or print(mysql_error());
-	while($row[$n] = mysql_fetch_assoc($sql)){
-		$n++;
-	}
-	
-	mysql_close(connect());
-	return $row;
-}
-
 function memToCache($adr){//TRANSFERIR DA MEMÓRIA PARA A CACHE
-
-	connect();
 	
 	$r['missorhit'] = missOrHit($adr);
 	
 
-	$query = "SELECT * FROM mp WHERE adr =".str_pad(decbin($adr),"0",MEMADRESS,STR_PAD_LEFT)."";
-	$sql = mysql_query($query) or print(mysql_error());
-	
-	$info = "";
-	
-	while($row = mysql_fetch_assoc($sql)){
-		$info = $row['cell00'].$row['cell01'].$row['cell10'].$row['cell11'];
-	}
-	
-	mysql_close(connect());
+	$info = $_SESSION['mp'][$adr]['cell00'].$_SESSION['mp'][$adr]['cell01'].$_SESSION['mp'][$adr]['cell10'].$_SESSION['mp'][$adr]['cell11'];
 	
 	
 	//retorno das informações para aparecer no html

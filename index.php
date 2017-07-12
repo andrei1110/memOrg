@@ -115,15 +115,14 @@ include("start.php");
 					<th>cell 11</th>
 				</tr>
 				<?php
-					$mem = loadMem();
 					for ($i = 0; $i < MAXMEM; $i++) {
 						echo '<tr onClick="memToCache('.$i.')">';
 							$id = str_pad(decbin($i), MEMADRESS, "0", STR_PAD_LEFT);
 							echo '<th>'.$id.'</th>';
-							echo '<td>'.$mem[$i]['cell00'].'</td>';
-							echo '<td>'.$mem[$i]['cell01'].'</td>';
-							echo '<td>'.$mem[$i]['cell10'].'</td>';
-							echo '<td>'.$mem[$i]['cell11'].'</td>';
+							echo '<td>'.$_SESSION['mp'][$i]['cell00'].'</td>';
+							echo '<td>'.$_SESSION['mp'][$i]['cell01'].'</td>';
+							echo '<td>'.$_SESSION['mp'][$i]['cell10'].'</td>';
+							echo '<td>'.$_SESSION['mp'][$i]['cell11'].'</td>';
 						echo '</tr>';
 					}
 				?>
