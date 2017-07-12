@@ -22,15 +22,16 @@ function memToCache(adr){
 	}, "html");
 }
 
-/*function alterValue(){
-	var val = document.getElementById("#change-bin");
-	$.post("alterInfoCache.php", {val : val},
+function alterValue(){
+	var val = $("#change-bin").val();
+	var tag = $("#tag-change").val();
+	var index = $("#index-change").val();
+	$.post("alterInfoCache.php", {val : val, tag : tag, index : index},
 	function(data){
-		$("#cache-"+cacheAdr").html(data); 
+		$("#cache-"+index).html(data); 
 	}, "html");
-	$.post("alterInfoMp.php", {val : val},
+	$.post("alterInfoMp.php", {val : val, tag : tag, index : index},
 	function(data){
 		$("#mp-adr-"+mpAdr).html(data); 
 	}, "html");
 }
-*/

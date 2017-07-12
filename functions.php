@@ -82,13 +82,14 @@ function memToCache($adr){//TRANSFERIR DA MEMÓRIA PARA A CACHE
 	return $r;
 }
 
-function aterCache($index, $tag, $info){//ESCREVER NA CACHE
+function writeCache($index, $tag, $info){//ESCREVER NA CACHE
 	
 	$_SESSION['cache'][$index]['info'] = $info;
 	
-	writeMem($tag, $index, $info);
+	//writeMem($tag, $index, $info);
 	
 	stats("WRITECACHE");
+	stats("ACCESS");
 }
 
 function writeMem($tag, $index, $info){//ESCREVER NA MEMÓRIA
@@ -96,6 +97,7 @@ function writeMem($tag, $index, $info){//ESCREVER NA MEMÓRIA
 	
 	$cell = INFOSIZE/4;
 	//concatena o index da memória (bits menos significativos)  com a tag (bits mais significativos) para formar o endereço de memória
+	$index = str_pad(bindec($index), 4,"0",STR_PAD_LEFT);
 	$adr = $tag.$index;
 	//divide a info para caber nas células de memória
 	$infoW[0] = substr($info,0,$cell);
