@@ -1,5 +1,7 @@
 function toChange(info){
-	$("#change").val(info);
+	$("#change-bin").val(info);
+	//var dec = parseInt( info, 2);
+	//$("#change-dec").val(dec);
 }
 
 function showStats(){

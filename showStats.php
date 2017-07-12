@@ -12,3 +12,9 @@
 <p>
 	Número de miss: <?php echo $_SESSION['stats']['miss'];?>
 </p>
+<p>
+	Número de escritas na memória: <?php echo $_SESSION['stats']['writemp'];?>
+</p>
+<p>
+	Número de leituras na memória: <?php echo $_SESSION['stats']['readmem'];?>
+</p>

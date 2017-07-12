@@ -8,10 +8,6 @@ include("struct.php");
 
 session_start();
 
-function resetSystem(){
-	session_destroy();
-}
-
 function connect(){ //FUNÇÃO PARA CONEXÃO NO BANCO DE DADOS
 	$conn = mysql_connect(HOST, USER, PASSWORD) or print(msql_error());
 	mysql_select_db(DB, $conn);
@@ -45,7 +41,7 @@ function startDB(){//INICIALIZAR O BANCO
 	mysql_close(connect());
 }
 
-function startCache(){
+function startCache(){//INICIAR A CACHE
 	for($countcache = 0; $countcache <= MAXCACHE; $countcache++){
 		$cache[$countcache]['info'] = 'NULL';
 		$cache[$countcache]['missorhit'] = '';
@@ -56,7 +52,7 @@ function startCache(){
 }
 
 
-function loadMem(){//Carregar a memória
+function loadMem(){//CARREGAR A MEMÓRIA
 	connect();
 	
 	$n = 0;
@@ -70,7 +66,7 @@ function loadMem(){//Carregar a memória
 	return $row;
 }
 
-function memToCache($adr){//transferir da memória para a cache
+function memToCache($adr){//TRANSFERIR DA MEMÓRIA PARA A CACHE
 
 	connect();
 	
@@ -94,6 +90,15 @@ function memToCache($adr){//transferir da memória para a cache
 	$r['tag'] = substr($r['tag'], 0, -4);
 	$r['validate'] = 1;
 	
+	if($_SESSION['cache'][$adr%16]['tag'] != 'NULL' && $r['missorhit'] != "HIT"){//WRITE MEM
+		$tag = $_SESSION['cache'][$adr%16]['tag'];
+		$index = str_pad(decbin($adr%16), 4, "0", STR_PAD_LEFT);
+		$info = $_SESSION['cache'][$adr%16]['info'];
+		writeMem($tag, $index, $info);
+	}
+	if($r['missorhit'] == "MISS"){
+		stats("READMEM");
+	}
 	
 	//salva as informações na cache
 	$_SESSION['cache'][$adr%16]['tag'] = $r['tag'];
@@ -104,7 +109,7 @@ function memToCache($adr){//transferir da memória para a cache
 	return $r;
 }
 
-function writeMem($tag, $index, $info){
+function writeMem($tag, $index, $info){//ESCREVER NA MEMÓRIA
 	
 	connect();
 	
@@ -121,11 +126,13 @@ function writeMem($tag, $index, $info){
 	
 	mysql_close(connect());
 	
+	stats("WRITEMP");
+	
 	return 1;
 }
 
 
-function missOrHit($adr){
+function missOrHit($adr){//FUNÇÃO PARA VERIFICAR SE O DADO ESTÁ NA CACHE
 
 	$r = "MISS";
 	for($i = 0; $i < MAXCACHE; $i++){
@@ -140,26 +147,35 @@ function missOrHit($adr){
 	return $r;
 }
 
-function resetStats(){
+function resetStats(){//RESETA AS ESTATÍSTICAS
 	
 	if(isset($_SESSION['stats']['control'])) unset($_SESSION['stats']);
 	
-	$_SESSION['stats']['control'] = 1;
+	$_SESSION['stats']['control'] = 1;//CONTROLE PARA ATIVAR AS ESTATÍSTICAS
 	$_SESSION['stats']['miss'] = 0;
 	$_SESSION['stats']['hits'] = 0;
 	$_SESSION['stats']['writemp'] = 0;
+	$_SESSION['stats']['readmem'] = 0;
 }
 
-function stats($type){
-	if($type == "MISS"){
+function stats($type){//INCREMENTA AS ESTATÍSTICAS
+
+	if($type == "MISS"){//MISS
 		$_SESSION['stats']['miss'] ++;
 	}
-	if($type == "HIT"){
+	
+	if($type == "HIT"){//HITS
 		$_SESSION['stats']['hits'] ++;
 	}
-	if($type == "WRITEMP"){
+	
+	if($type == "WRITEMP"){//ESCRITA EM MEMÓRIA
 		$_SESSION['stats']['writemp'] ++;
 	}
+	
+	if($type == "READMEM"){//ESCRITA EM MEMÓRIA
+		$_SESSION['stats']['readmem'] ++;
+	}
+
 }
 
 ?>

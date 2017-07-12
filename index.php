@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <?php
 /*
 	Trabalho sobre memória
@@ -20,6 +21,8 @@ include("start.php");
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 </head>
+
+
 <body>
 
 <div class="container">
@@ -30,27 +33,32 @@ include("start.php");
 	<h3>Cache de mapeamento direto com write-through</h3>
 	<h3>Andrei Toledo, Jardel Anton e Marcelo Acordi</h3> -->
 	
-
+	<!-- MODIFICAR VALOR CACHE -->
 	<div class="row">
-		<div class="container">
-			<div class="col-offset-2">
-				<div class="col-sm-4">
-					<label for="change">Alterar valor</label>
-					<input type="text" class="form-control" id="change" value="">
-					<button class="btn btn-default" type="submit">Alterar</button>
-				</div>
-			</div>
+		<div class="col-sm-6 form-inline">
+			<label for="change">Binário</label>
+			<input type="text" class="form-control" width="35" id="change-bin" value="" disabled pattern="[0-1]{32}">
+			<button class="btn btn-default" type="submit">Alterar</button>
 		</div>
+		<!--<div class="col-sm-2">
+			<label for="change">Decimal</label>
+			<input type="text" class="form-control" id="change-dec" value="" disabled pattern="[0-1]{32}">
+		</div> -->
+		
+		<!-- ESTATÍSTICAS -->
+		<div id="stats" class="col-sm-6 panel panel-default" onload="showStats()">
+			<br/>
+			<button class="btn btn-default" onclick="showStats()">Mostrar estatísticas</button>
+			<p> </p>
+		</div>
+		<!-- FIM ESTATÍSTICAS -->
 	</div>
-
+	<!-- FIM MODIFICAR VALOR CACHE -->
 	
-<div class="row">
-	<div id="stats" class="container" onload="showStats()">
-		<br/>
-		<button class="btn btn-default" onclick="showStats()">Mostrar estatísticas</button>
-	</div>
-</div>
+	
 
+
+	<!-- CACHE -->
 	<div class="row">
 		<div class="col-md-6">
 			<h3>Cache</h3>
@@ -80,7 +88,9 @@ include("start.php");
 				?>
 			</table>
 		</div> <!-- FIM GRID 6 -->
+		<!-- FIM CACHE -->
 
+		<!-- MEMÓRIA PRINCIPAL -->
 		<div class="col-md-6">
 			<h3>Memória principal</h3>
 			<div class="row">
@@ -119,6 +129,7 @@ include("start.php");
 				?>
 			</table>
 		</div> <!-- FIM GRID 6 -->
+		<!-- FIM MEMÓRIA PRINCIPAL -->
 		
 	</div> <!-- FIM ROW -->
 	
