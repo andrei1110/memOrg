@@ -43,9 +43,14 @@ function memToCache($adr){//TRANSFERIR DA MEMÓRIA PARA A CACHE
 	
 	$r['missorhit'] = missOrHit($adr);
 	
-
-	$info = $_SESSION['mp'][$adr]['cell00'].$_SESSION['mp'][$adr]['cell01'].$_SESSION['mp'][$adr]['cell10'].$_SESSION['mp'][$adr]['cell11'];
 	
+	if($r['missorhit'] == 'MISSCACHE'){
+		$info = $_SESSION['mp'][$adr]['cell00'].$_SESSION['mp'][$adr]['cell01'].$_SESSION['mp'][$adr]['cell10'].$_SESSION['mp'][$adr]['cell11'];
+		stats('WRITECACHE');
+	}
+	else{
+		$info = $_SESSION['cache'][$adr%16]['info'];
+	}
 	
 	//retorno das informações para aparecer no html
 	$r['info'] = $info;
@@ -54,12 +59,17 @@ function memToCache($adr){//TRANSFERIR DA MEMÓRIA PARA A CACHE
 	$r['tag'] = substr($r['tag'], 0, -4);
 	$r['validate'] = 1;
 	
+	/*
+	
+	A ESCRITA NA MEMÓRIA SÓ SE DÁ NA MODIFICAÇÃO DO DADO, QUANDO O DADO É MODIFICADO, ELE É ESCRITO EM AMBAS AS MEMÓRIAS
+	
 	if($_SESSION['cache'][$adr%MAXCACHE]['tag'] != 'NULL' && $r['missorhit'] != "HIT"){//WRITE MEM
 		$tag = $_SESSION['cache'][$adr%MAXCACHE]['tag'];
 		$index = str_pad(decbin($adr%MAXCACHE), CACHEADRESS, "0", STR_PAD_LEFT);
 		$info = $_SESSION['cache'][$adr%MAXCACHE]['info'];
 		writeMem($tag, $index, $info);
-	}
+	}*/
+	
 	if($r['missorhit'] == "MISS"){
 		stats("READMEM");
 	}
@@ -73,6 +83,15 @@ function memToCache($adr){//TRANSFERIR DA MEMÓRIA PARA A CACHE
 	stats("ACCESS");
 	
 	return $r;
+}
+
+function aterCache($index, $tag, $info){//ESCREVER NA CACHE
+	
+	$_SESSION['cache'][$index]['info'] = $info;
+	
+	writeMem($tag, $index, $info);
+	
+	stats("WRITECACHE");
 }
 
 function writeMem($tag, $index, $info){//ESCREVER NA MEMÓRIA
@@ -100,11 +119,11 @@ function writeMem($tag, $index, $info){//ESCREVER NA MEMÓRIA
 
 function missOrHit($adr){//FUNÇÃO PARA VERIFICAR SE O DADO ESTÁ NA CACHE
 
-	$r = "MISS";
+	$r = "MISSCACHE";
 	for($i = 0; $i < MAXCACHE; $i++){
 		$search = $_SESSION['cache'][$i]['tag'].str_pad(decbin($i), CACHEADRESS, "0", STR_PAD_LEFT);
 		if(str_pad(decbin($adr), MEMADRESS ,"0", STR_PAD_LEFT) == $search){
-			$r = "HIT";
+			$r = "HITCACHE";
 			stats($r);
 			return $r;
 		}
@@ -118,8 +137,9 @@ function resetStats(){//RESETA AS ESTATÍSTICAS
 	if(isset($_SESSION['stats']['control'])) unset($_SESSION['stats']);
 	
 	$_SESSION['stats']['control'] = 1;//CONTROLE PARA ATIVAR AS ESTATÍSTICAS
-	$_SESSION['stats']['miss'] = 0;
-	$_SESSION['stats']['hits'] = 0;
+	$_SESSION['stats']['misscache'] = 0;
+	$_SESSION['stats']['hitscache'] = 0;
+	$_SESSION['stats']['writecache'] = 0;
 	$_SESSION['stats']['writemp'] = 0;
 	$_SESSION['stats']['readmem'] = 0;
 	$_SESSION['stats']['access'] = 0;
@@ -127,12 +147,12 @@ function resetStats(){//RESETA AS ESTATÍSTICAS
 
 function stats($type){//INCREMENTA AS ESTATÍSTICAS
 
-	if($type == "MISS"){//MISS
-		$_SESSION['stats']['miss'] ++;
+	if($type == "MISSCACHE"){//MISS
+		$_SESSION['stats']['misscache'] ++;
 	}
 	
-	if($type == "HIT"){//HITS
-		$_SESSION['stats']['hits'] ++;
+	if($type == "HITCACHE"){//HITS
+		$_SESSION['stats']['hitscache'] ++;
 	}
 	
 	if($type == "WRITEMP"){//ESCRITA EM MEMÓRIA
@@ -145,6 +165,9 @@ function stats($type){//INCREMENTA AS ESTATÍSTICAS
 	
 	if($type == "ACCESS"){//ACESSO A CACHE
 		$_SESSION['stats']['access'] ++;
+	}
+	if($type == "WRITECACHE"){//ESCRITAS NA CACHE
+		$_SESSION['stats']['writecache'] ++;
 	}
 
 }

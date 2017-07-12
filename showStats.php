@@ -7,10 +7,10 @@
 <br/>
 
 <div class="col-sm-6">
-	Número de hits: <?php echo $_SESSION['stats']['hits'];?>
+	Número de hits na cache: <?php echo $_SESSION['stats']['hitscache'];?>
 </div>
 <div class="col-sm-6">
-	Número de miss: <?php echo $_SESSION['stats']['miss'];?>
+	Número de miss na cache: <?php echo $_SESSION['stats']['misscache'];?>
 </div>
 <div class="col-sm-6">
 	Número de escritas na memória: <?php echo $_SESSION['stats']['writemp'];?>
@@ -20,4 +20,7 @@
 </div>
 <div class="col-sm-6">
 	Número de acessos: <?php echo $_SESSION['stats']['access'];?>
+</div>
+<div class="col-sm-6">
+	Número de escritas na cache: <?php echo $_SESSION['stats']['writecache'];?>
 </div>
